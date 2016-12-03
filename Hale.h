@@ -27,7 +27,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <unordered_map>
-#include <map>
 #include <list>
 #include <vector>
 
@@ -170,7 +169,7 @@ typedef struct {
   std::string glslStr;
 } glEnumItem;
 /* gadget to map GLenum values to something readable */
-extern std::map<GLenum,glEnumItem> glEnumDesc;
+extern std::unordered_map<GLenum,glEnumItem> glEnumDesc;
 
 extern GLuint loadTextureImage(const Nrrd *nimg);
 
@@ -386,8 +385,8 @@ class Program {
   void uniform(std::string, glm::mat4, bool sticky=false) const;
   // these are the basis of uniform()'s implementation, and they should
   // perhaps be private, but this way they're accessible to experts
-  std::map<std::string,GLint> uniformLocation;
-  std::map<std::string,glEnumItem> uniformType;
+  std::unordered_map<std::string,GLint> uniformLocation;
+  std::unordered_map<std::string,glEnumItem> uniformType;
  protected:
   GLint _vertId, _fragId, _progId;
   GLchar *_vertCode, *_fragCode;
@@ -401,10 +400,10 @@ extern void uniform(std::string, glm::vec4, bool sticky=false);
 extern void uniform(std::string, glm::mat4, bool sticky=false);
 /* The "sticky uniforms"; Program->use() calls stickyUniform() to re-set
    all the uniforms that were intended to be used for all programs */
-extern std::map<std::string, float> stickyUniformFloat;
-extern std::map<std::string, glm::vec3> stickyUniformVec3;
-extern std::map<std::string, glm::vec4> stickyUniformVec4;
-extern std::map<std::string, glm::mat4> stickyUniformMat4;
+extern std::unordered_map<std::string, float> stickyUniformFloat;
+extern std::unordered_map<std::string, glm::vec3> stickyUniformVec3;
+extern std::unordered_map<std::string, glm::vec4> stickyUniformVec4;
+extern std::unordered_map<std::string, glm::mat4> stickyUniformMat4;
 extern void stickyUniform(void);
 /* way to access one of the "pre-programs"; will compile as needed */
 extern const Program *ProgramLib(preprogram pp); 
@@ -425,7 +424,7 @@ class Polydata {
   void colorSolid(glm::vec3 rgb);
   void colorSolid(glm::vec4 rgba);
   glm::vec4 colorSolid() const;
-  void setTexture(char *varName, Nrrd *nimg);
+  void setTexture(char const *varName, Nrrd *nimg);
   void bindTexture() const;
   /* set/get model transformation */
   void model(glm::mat4 mat);

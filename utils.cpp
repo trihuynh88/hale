@@ -78,7 +78,7 @@ errorGLFW(int errnum, const char *errstr) {
   return;
 }
 
-std::map<GLenum, glEnumItem> glEnumDesc;
+std::unordered_map<GLenum, glEnumItem> glEnumDesc;
 
 static void
 glEnumDescInit() {

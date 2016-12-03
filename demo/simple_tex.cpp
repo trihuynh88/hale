@@ -134,7 +134,7 @@ main(int argc, const char **argv) {
                         NULL,
                        "square");
   hpld.program(newprog);
-  hpld.setTexture((char*)"myTextureSampler",nimg);
+  hpld.setTexture("myTextureSampler",nimg);
   scene.add(&hpld);
 
 
@@ -145,7 +145,7 @@ main(int argc, const char **argv) {
                        "square");
 
   hpld2.program(newprog);  
-  hpld2.setTexture((char*)"myTextureSampler",nimg2);
+  hpld2.setTexture("myTextureSampler",nimg2);
   glm::mat4 tmat = glm::mat4();
   tmat[3][2] = 1;
   hpld2.model(tmat);

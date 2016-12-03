@@ -151,7 +151,7 @@ Polydata::_init(std::string name) {
   glGenBuffers(_buffNum, _buff);
   if (debugging) {
     printf("# glGenBuffers(%u, &); -> %u", _buffNum, _buff[0]);
-    for (int bi=1; bi<_buffNum; bi++) {
+    for (unsigned int bi=1; bi<_buffNum; bi++) {
       printf(" %u", _buff[bi]);
     }
     printf("\n");
@@ -297,12 +297,12 @@ std::string Polydata::name() const {
 }
 
 
-void Polydata::setTexture(char *varName, Nrrd *nimg)
+void Polydata::setTexture(char const *varName, Nrrd *nimg)
 {
   GLuint curId = loadTextureImage(nimg);
   _textureIds.push_back(curId);
   unsigned int curTex = _textureIds.size()-1;
-  _textureVars[varName] = curTex;
+  _textureVars[(char*)varName] = curTex;
 }
 
 void Polydata::bindTexture() const 

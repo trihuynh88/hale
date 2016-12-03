@@ -26,10 +26,10 @@
 namespace Hale {
 
 /* gadgets to map uniform names to variables */
-std::map<std::string, float> stickyUniformFloat;
-std::map<std::string, glm::vec3> stickyUniformVec3;
-std::map<std::string, glm::vec4> stickyUniformVec4;
-std::map<std::string, glm::mat4> stickyUniformMat4;
+std::unordered_map<std::string, float> stickyUniformFloat;
+std::unordered_map<std::string, glm::vec3> stickyUniformVec3;
+std::unordered_map<std::string, glm::vec4> stickyUniformVec4;
+std::unordered_map<std::string, glm::mat4> stickyUniformMat4;
 
 #define VERSION "#version 150 core\n "
 static const char *AmbDiff_vert =
